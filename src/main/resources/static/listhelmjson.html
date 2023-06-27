@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="align:center">
+<h3>Daftar Helm</h3>
+<table id="table">
+    <thead>
+    <tr>
+        <td>Merk</td>
+        <td>Warna</td>
+        <td>Ukuran</td>
+        <td>Jenis</td>
+        <td>Stok</td>
+        <td>Harga</td>
+    </tr>
+    </thead>
+</table>
+    <br>
+<a href="http://localhost:8080/helm/report/html">Export</a>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script language="JavaScript">
+    var url='http://localhost:8080/getHelms';
+    $(document).ready(function () {
+        $.getJSON(url,
+            function (json){
+            var tr;
+            for(var i=0; i<json.length; i++){
+                tr=$('<tr/>');
+                tr.append("<td>"+json[i].merk + "</td>");
+                tr.append("<td>"+json[i].warna + "</td>");
+                tr.append("<td>"+json[i].ukuran + "</td>");
+                tr.append("<td>"+json[i].jenis + "</td>");
+                tr.append("<td>"+json[i].stok + "</td>");
+                tr.append("<td>"+json[i].harga + "</td>");
+                tr.append('<td><button onclick="editHelm('+json[i].idHelm+')">Edit</button></td>');
+                tr.append('<td><button onclick="deleteHelm('+json[i].idHelm+')">Delete</button></td>');
+                $('table').append(tr);
+            }
+            });
+    });
+
+    function editHelm(idHelm) {
+        window.location.href = 'http://localhost:8080/editHelm?idHelm=' + idHelm;
+    }
+
+    function deleteHelm(id) {
+        if (confirm("Are you sure you want to delete this helm?")) {
+            $.ajax({
+                url: 'http://localhost:8080/deleteHelm?id=' + id,
+                type: 'DELETE',
+                success: function(result) {
+                    alert('Helm deleted successfully');
+                    location.reload();
+                }
+            });
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form action="/updateHelm" method="get">
+  <table>
+    <tr>
+      <td><label for="idHelm">idHelm</label></td>
+      <td><input name="idHelm" id="idHelm" value=""></td>
+    </tr>
+    <tr>
+      <td><label for="merk">Merk</label></td>
+      <td><input name="merk" id="merk" value=""></td>
+    </tr>
+    <tr>
+      <td><label for="warna">Warna</label></td>
+      <td><input name="warna" id="warna" value=""></td>
+    </tr>
+    <tr>
+      <td><label for="ukuran">Ukuran</label></td>
+      <td><input name="ukuran" id="ukuran" value=""></td>
+    </tr>
+    <tr>
+      <td><label for="stok">Stok</label></td>
+      <td><input name="stok" id="stok" value=""></td>
+    </tr>
+    <tr>
+      <td><label for="jenis">Jenis</label></td>
+      <td><input name="jenis" id="jenis" value=""></td>
+    </tr>
+    <tr>
+      <td><label for="harga">Harga</label></td>
+      <td><input name="harga" id="harga" value=""></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Save!</button></td>
+    </tr>
+  </table>
+</form>
+
+<script>
+  // Mengambil ID helm dari parameter URL
+  var urlParams = new URLSearchParams(window.location.search);
+  var idHelm = urlParams.get('idHelm');
+
+  // Mengambil data helm dari server menggunakan AJAX
+  var url = "http://localhost:8080/getHelm?idHelm=" + idHelm;  // Ganti dengan URL yang sesuai
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var helm = JSON.parse(xhr.responseText);
+      document.getElementById("idHelm").value = helm.idHelm;
+      document.getElementById("merk").value = helm.merk;
+      document.getElementById("warna").value = helm.warna;
+      document.getElementById("ukuran").value = helm.ukuran;
+      document.getElementById("stok").value = helm.stok;
+      document.getElementById("jenis").value = helm.jenis;
+      document.getElementById("harga").value = helm.harga;
+    }
+  };
+  xhr.send();
+</script>
+
+</body>
+</html>

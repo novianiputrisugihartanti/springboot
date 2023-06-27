@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="align:center">
+<form th:action="@{/update/{idHelm}(idHelm=${helm.idHelm})}" th:object="${helm}" method="post">
+    <table>
+        <tr>
+            <td><label for="idHelm">ID Helm</label></td>
+            <td><input name="idHelm" id="idHelm" th:field="*{idHelm}"></td>
+        </tr>
+        <tr>
+            <td><label for="merk">Merk</label></td>
+            <td><input name="merk" id="merk" th:field="*{merk}"></td>
+        </tr>
+        <tr>
+            <td><label for="warna">Warna</label></td>
+            <td><input name="warna" id="warna" th:field="*{warna}"></td>
+        </tr>
+        <tr>
+            <td><label for="ukuran">Ukuran</label></td>
+            <td><input name="ukuran" id="ukuran" th:field="*{ukuran}"></td>
+        </tr>
+        <tr>
+            <td><label for="stok">Stok</label></td>
+            <td><input name="stok" id="stok" th:field="*{stok}"></td>
+        </tr>
+        <tr>
+            <td><label for="jenis">Jenis</label></td>
+            <td><input name="jenis" id="jenis" th:field="*{jenis}"></td>
+        </tr>
+        <tr>
+            <td><label for="harga">Harga</label></td>
+            <td><input name="harga" id="harga" th:field="*{harga}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button>Update !</button></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

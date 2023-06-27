@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="align:center">
+<h3>Daftar Helm</h3>
+<table id="table">
+  <thead>
+  <tr>
+      <td>Merk</td>
+      <td>Warna</td>
+      <td>Ukuran</td>
+      <td>Jenis</td>
+      <td>Stok</td>
+      <td>Harga</td>
+  </tr>
+  </thead>
+    <tbody>
+    <tr th:each="helm: ${listHelm}">
+        <td th:text="${helm.merk}"></td>
+        <td th:text="${helm.warna}"></td>
+        <td th:text="${helm.ukuran}"></td>
+        <td th:text="${helm.jenis}"></td>
+        <td th:text="${helm.stok}"></td>
+        <td th:text="${helm.harga}"></td>
+        <td><a th:href="@{/edit/{idHelm}(idHelm=${helm.getIdHelm()})}" >Edit</a></td>
+        <td><a th:href="@{/delete/{idHelm}(idHelm=${helm.getIdHelm()})}" >Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="http://localhost:8080/helm/report/html">Export</a>
+</body>
+</html>
